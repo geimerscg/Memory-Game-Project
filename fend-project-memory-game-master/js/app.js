@@ -25,6 +25,8 @@ function shuffle(array) {
     return array;
 }
 
+//Testing out making commits to the master branch.
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
