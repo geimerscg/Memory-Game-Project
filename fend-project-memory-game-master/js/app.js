@@ -39,8 +39,14 @@ function shuffle(array) {
 
 const allCards = document.querySelectorAll('.card');
 
+
 for (const card of allCards) {
   card.addEventListener('click', function() {
     console.log('clicked');
+    function flipTheCard() {
+      card.classList.add('open', 'show');
+    };
+    flipTheCard();
+
   })
 };
