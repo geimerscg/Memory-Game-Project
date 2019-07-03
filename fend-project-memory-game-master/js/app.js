@@ -1,4 +1,4 @@
-/*
+  /*
  * Create a list that holds all of your cards
  */
 
@@ -37,16 +37,19 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-const allCards = document.querySelectorAll('.card');
 
 
-for (const card of allCards) {
-  card.addEventListener('click', function() {
+//sets a variable for each card and creates an array to store open cards.
+let card = document.getElementsByClassName('card');
+let openCards = [...card];
+
+
+//sets an event listener for each card to respond to clicks and flip the card.
+for (const card of openCards) {
+  card.addEventListener('click', function(){
     console.log('clicked');
-    function flipTheCard() {
-      card.classList.add('open', 'show');
-    };
-    flipTheCard();
-
-  })
+    card.classList.toggle('open');
+    card.classList.toggle('show');
+  });
 };
+
