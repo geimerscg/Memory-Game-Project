@@ -1,6 +1,21 @@
 /*
 * Create a list that holds all of your cards
 */
+let cards = [
+  'fa-diamond', 'fa-diamond',
+  'fa-paper-plane-o', 'fa-paper-plane-o',
+  'fa-anchor', 'fa-anchor',
+  'fa-cube', 'fa-cube',
+  'fa-bolt', 'fa-bolt',
+  'fa-leaf', 'fa-leaf',
+  'fa-bomb', 'fa-bomb',
+  'fa-bicycle', 'fa-bicycle',
+];
+
+function generateCard(card) {
+  return `<li class="card" data-card=${card}><i class="fa ${card}"></i></li>`;
+};
+
 
 
 /*
@@ -23,7 +38,7 @@ function shuffle(array) {
   }
 
   return array;
-}
+};
 
 
 /*
@@ -37,27 +52,72 @@ function shuffle(array) {
 *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
 */
 
+function startGame() {
+  let deck = document.querySelector('.deck')
+  let cardHTML = shuffle(cards).map(function(card) {
+    return generateCard(card);
+  });
+  deck.innerHTML = cardHTML.join('');
+};
 
+
+
+
+
+
+
+startGame();
 
 //sets a variable for each card and creates an array to store open cards.
 let allCards = document.querySelectorAll('.card');
 let openCards = [];
+let moves = 0;
+let moveCounter = document.querySelector('.moves');
+let matchedCards = [];
 
 //sets an event listener for each card to respond to clicks and flip the card.
 for (const card of allCards) {
 card.addEventListener('click', function(){
-  console.log('clicked');
-  openCards.push(card);
-  card.classList.add('open', 'show');
-  //if more than two cards are open, they go away now!
-  if (openCards.length == 2) {
-    setTimeout(function() {
-      for (const card of openCards) {
-        card.classList.remove('open', 'show');
-      };
-      openCards = [];
-    }, 1000);
+    if (!card.classList.contains('open') && !card.classList.contains('show')) {
+    openCards.push(card);
+    card.classList.add('open', 'show');
+
+
+
+    if (openCards.length == 2) {
+      if (openCards[0].dataset.card == openCards[1].dataset.card) {
+        console.log('they match!!!');
+        openCards[0].classList.add('match', 'open', 'show');
+        openCards[1].classList.add('match', 'open', 'show');
+        matchedCards.push(card);
+        openCards = [];
+      }
+
+
+
+
+      //if they don't match
+      else
+      (setTimeout(function() {
+          for (const card of openCards) {
+            card.classList.remove('open', 'show');
+          };
+          openCards = [];
+        }, 1000)
+      )
+    }
+    console.log(openCards);
+    moves++;
+    moveCounter.innerText = moves;
+
+
+    //finish the game
+    if (matchedCards == 8) {
+      console.log('game is won');
+    }
+    else {
+      console.log('game still goin');
+    }
   }
-  console.log(openCards);
-  });
-};
+});
+}
