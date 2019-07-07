@@ -1,6 +1,9 @@
 /*
 * Create a list that holds all of your cards
 */
+
+
+//creates an array of cards to be shuffled when the game starts
 let cards = [
   'fa-diamond', 'fa-diamond',
   'fa-paper-plane-o', 'fa-paper-plane-o',
@@ -52,6 +55,10 @@ function shuffle(array) {
 *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
 */
 
+
+
+
+//creates the deck dynamically and shuffles the cards
 function startGame() {
   let deck = document.querySelector('.deck')
   let cardHTML = shuffle(cards).map(function(card) {
@@ -60,20 +67,18 @@ function startGame() {
   deck.innerHTML = cardHTML.join('');
 };
 
-
-
-
-
-
-
 startGame();
 
-//sets a variable for each card and creates an array to store open cards.
+//creates an array to set event handlers on the cards
 let allCards = document.querySelectorAll('.card');
 let openCards = [];
+//sets a variable to track the number of player moves
 let moves = 0;
 let moveCounter = document.querySelector('.moves');
+//creates an array to track the matched cards
 let matchedCards = [];
+//selects the stars for the rating system
+let stars = document.querySelectorAll(".fa-star");
 
 //sets an event listener for each card to respond to clicks and flip the card.
 for (const card of allCards) {
@@ -83,7 +88,7 @@ card.addEventListener('click', function(){
     card.classList.add('open', 'show');
 
 
-
+    //if cards match
     if (openCards.length == 2) {
       if (openCards[0].dataset.card == openCards[1].dataset.card) {
         console.log('they match!!!');
@@ -107,8 +112,27 @@ card.addEventListener('click', function(){
       )
     }
     console.log(openCards);
+    //keeps track of the number of player moves
     moves++;
     moveCounter.innerText = moves;
+
+
+
+    //changes the star rating to drop with more moves
+    if (moves > 16 && moves < 32){
+           for( i= 0; i < 3; i++){
+               if(i > 1){
+                   stars[i].style.visibility = "hidden";
+               }
+           }
+       }
+    else if (moves > 33){
+           for( i= 0; i < 3; i++){
+               if(i > 0){
+                   stars[i].style.visibility = "hidden";
+               }
+           }
+       }
 
 
     //finish the game
