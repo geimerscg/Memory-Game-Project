@@ -22,64 +22,37 @@
         		<li><i class="fa fa-star"></i></li>
         	</ul>
 
-        	<span class="moves">3</span> Moves
+          <div class="timer">
+          </div>
 
-            <div class="restart">
+        	<span class="moves">0</span> Moves
+
+            <div class="restart" onclick='createDeck()'>
         		<i class="fa fa-repeat"></i>
         	</div>
         </section>
 
         <ul class="deck">
-            <li class="card">
-                <i class="fa fa-diamond"></i>
-            </li>
-            <li class="card">
-                <i class="fa fa-paper-plane-o"></i>
-            </li>
-            <li class="card match">
-                <i class="fa fa-anchor"></i>
-            </li>
-            <li class="card">
-                <i class="fa fa-bolt"></i>
-            </li>
-            <li class="card">
-                <i class="fa fa-cube"></i>
-            </li>
-            <li class="card match">
-                <i class="fa fa-anchor"></i>
-            </li>
-            <li class="card">
-                <i class="fa fa-leaf"></i>
-            </li>
-            <li class="card">
-                <i class="fa fa-bicycle"></i>
-            </li>
-            <li class="card">
-                <i class="fa fa-diamond"></i>
-            </li>
-            <li class="card">
-                <i class="fa fa-bomb"></i>
-            </li>
-            <li class="card">
-                <i class="fa fa-leaf"></i>
-            </li>
-            <li class="card">
-                <i class="fa fa-bomb"></i>
-            </li>
-            <li class="card open show">
-                <i class="fa fa-bolt"></i>
-            </li>
-            <li class="card">
-                <i class="fa fa-bicycle"></i>
-            </li>
-            <li class="card">
-                <i class="fa fa-paper-plane-o"></i>
-            </li>
-            <li class="card">
-                <i class="fa fa-cube"></i>
-            </li>
         </ul>
     </div>
+
+    <div id="popup1" class="overlay">
+            <div class="popup">
+                <h2>OMG you're so smart!</h2>
+                <a class="close" href=# >×</a>
+                <div class="content-1">
+                    It's Game over, man! You won
+                </div>
+                <div class="content-2">
+                    <p>It took you <span id=finalMove> </span> moves </p>
+                    <p>and you spent <span id=totalTime> </span> </p>
+                    <p>Rating:  <span id=starRating></span></p>
+                </div>
+                <button id="play-again"onclick="playAgain()">
+                    Another Round?</a>
+                </button>
+            </div>
+        </div>
 
     <script src="js/app.js"></script>
 </body>
